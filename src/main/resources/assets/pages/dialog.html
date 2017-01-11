@@ -1,0 +1,24 @@
+<div>
+        <div class="form-group">
+            <form>
+                <label for="destination">Quel destinataire?</label>
+                <select class="form-control" id="destination" ng-model="select.parent">
+                    <option ng-repeat="parent in optionParent" value="{{parent}}">{{parent}}</option>
+                </select>
+                <input type="button" class="btn btn-default" value="Choisir" ng-click="chooseParent(select.parent)"/>
+                <input type="button" class="btn btn-default" value="Réinitialiser" ng-click="removeParents()"/>
+
+            </form>
+        </div>
+        <form name="form">
+            <input type="text" name="name" placeholder="Name" ng-model="formData.name" disabled required/>
+            <span class="error" ng-show="form.name.$error.required">Required!</span><br>
+            <textarea name="content" placeholder="Entez votre message..." ng-model="formData.content" required></textarea>
+            <span class="error" ng-show="form.content.$error.required">Required!</span><br>
+            <div class="ngdialog-buttons">
+                <button type="button" class="btn btn-primary" ng-click=closeThisDialog()>Cancel</button>
+                <button type="button" class="btn btn-primary" ng-click=confirm() ng-show="!form.content.$error.required &&
+                        !form.name.$error.required">OK</button>
+            </div>
+        </form>
+</div>

@@ -1,0 +1,21 @@
+
+<div>
+    <input type="button" value="Ecrire un mot" ng-click="openForm()" class="btn btn-primary">
+<h3> Listes des mots déjà écrits </h3>
+    <div class="row" ng-repeat="msg in listMessages">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{msg.date}}
+                </div>
+                <div class="panel-body">
+                    {{msg.content}}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div ng-repeat="(person,checked) in msg.hasConfirmed">{{person}}
+                <span ng-if="checked" class="glyphicon glyphicon-ok"/>
+            </div>
+    </div>
+</div>

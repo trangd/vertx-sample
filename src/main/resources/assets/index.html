@@ -1,0 +1,74 @@
+<html ng-app="liaisonApp">
+    <head base="/">
+        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap/bootstrap.css"></link>
+        <link rel="stylesheet" type="text/css" href="assets/js/lib/ng-dialog-0.2.3/css/ngDialog.css"></link>
+        <link rel="stylesheet" type="text/css" href="assets/js/lib/ng-dialog-0.2.3/css/ngDialog-theme-default.css"></link>
+    </head>
+<body>
+    <h2>Carnet de liaison</h2>
+    <div ng-controller = "liaisonController">
+    <div class="col-md-6">
+        <h3> Professor </h3>
+        <input type="button" value="Ecrire un mot" ng-click="openForm('Voulez vous envoyer ce mot?')" class="btn btn-primary">
+        <h3> Listes des mots déjà écrits </h3>
+        <div class="row" ng-repeat="msg in listMessages">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        {{msg.date}}
+                    </div>
+                    <div class="panel-body">
+                        {{msg.content}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div ng-repeat="(person,checked) in msg.hasConfirmed">{{person}}
+                    <span ng-if="checked" class="glyphicon glyphicon-ok"/>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="col-md-6">
+            <h3>Parent </h3>
+            <div class ="row">
+                <select class="form-control" id="destination" ng-model="select.parent">
+                    <option ng-repeat="parent in allParent" value="{{parent}}">{{parent}}</option>
+                </select>
+                <input type="button" class="btn btn-default" value="Choisir" ng-click="chooseParentMsg(select.parent)"/>
+            </div>
+            <h3> Listes des mots reçus </h3>
+            <div class="row" ng-repeat="msg in listParentMessage">
+                <div class="col-md-6">
+                      <div class="panel panel-default">
+                                <div class="panel-heading">
+                                {{msg.date}}
+                        </div>
+                        <div class="panel-body">
+                            {{msg.content}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <input type="checkbox" ng-model="msg.hasConfirmed[parentChosen]" ng-change="updateStateMessage()">Confirmer</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript" src="assets/js/init/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/lib/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/init/angular.min.js"></script>
+    <script type="text/javascript" src="assets/js/init/angular-route.min.js"></script>
+    <script type="text/javascript" src="assets/js/lib/ng-dialog-0.2.3/ngDialog.min.js"></script>
+
+    <script type="text/javascript" src="assets/js/app/app.js"></script>
+    <script type="text/javascript" src="assets/js/app/modules/controllers.module.js"></script>
+    <script type="text/javascript" src="assets/js/app/modules/services.module.js"></script>
+    <script type="text/javascript" src="assets/js/app/controllers.js"></script>
+    <script type="text/javascript" src="assets/js/app/services.js"></script>
+
+</body>
+</html>
